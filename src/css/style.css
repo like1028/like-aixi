@@ -2,17 +2,9 @@
  *@fileName style.css
  *@author   Like (likeaixi@gmail.com)
  *@date     2018/3/27
- *@disc
+ *@disc     样式文件入口
  */
-@font-face {
-    font-family: 'MyFont';
-    src: url("../fonts/fontawesome-webfont.c8ddf1e.woff") format('woff');
-    /*url("./fontawesome-webfont.25a3241.eot") format('eot'),*/
-    /*url("./fontawesome-webfont.c8ddf1e.woff") format('woff'),*/
-    /*url("./fontawesome-webfont.e6cf7c6.woff2") format('woff2');*/
-}
-.hello{
-    color: red;
-    font-family: 'MyFont';
-    background: url('../img/27.png');
-}
+@import "normalize.css";
+@import "fontawesome-all.css";
+@import "reset.css";
+@import "mystyle.css";

@@ -58,7 +58,8 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['../dist']),//每次打包前清空dist目录
         new HtmlWebpackPlugin({
-            title: 'Production' //设置页面title
+            title: 'Likeaixi', //设置页面title
+            template: 'index.html'
         })
     ]
 };
