@@ -4,3 +4,18 @@
  *@date     2018/4/2
  *@disc     个人样式文件
  */
+.menu {
+    height: 90px;
+    padding: 20px 0;
+    background: lightskyblue;
+}
+.menu-content {
+    width: 1120px;
+    height: 40px;
+}
+.nav-left {
+    float: left;
+}
+.nav-right {
+    float: right;
+}
