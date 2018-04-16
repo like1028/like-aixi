@@ -4,18 +4,49 @@
  *@date     2018/4/2
  *@disc     个人样式文件
  */
-.menu {
+
+/*导航*/
+.nav-top {
     height: 90px;
     padding: 20px 0;
-    background: lightskyblue;
+    background:rgba(0,0,0,.1);
 }
-.menu-content {
+.nav-content {
     width: 1120px;
     height: 40px;
+    margin: 0 auto;
+    line-height: 40px;
+}
+.nav-content:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 .nav-left {
     float: left;
+    font-size: 22px;
+    font-weight: 700;
+    font-family: 'Dancing Script', cursive;
+    color: royalblue;
 }
 .nav-right {
     float: right;
+}
+.nav-box {
+    /*float: left;*/
+}
+.nav-box li {
+    float: left;
+    margin: 0 20px;
+}
+
+/*底部*/
+.footer {
+    height: 72px;
+    background: #142837;
+}
+.footer-content {
+    width: 1120px;
+    margin: 20px auto;
+    color: #fff;
 }
