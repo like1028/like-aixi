@@ -6,9 +6,51 @@
  */
 
 const http = require('http');
-const express = require('express');
+const express = require('express')
+const createError = require('http-errors');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+
+// router
+const index = require('./server/routes/index');
+
 
 const app = express();
+
+
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+app.use('/', index);
+
+
+
+// catch 404 and forward to error handler
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+
+// error handler
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
 
 /**
  * Get port from environment and store in Express.
@@ -30,83 +72,6 @@ const server = http.createServer(app);
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /**
  * Normalize a port into a number, string, or false.
@@ -167,4 +132,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   console.log('App is listening on ' + bind);
+  console.log(`App started at localhost:${port}`);
 }
