@@ -131,6 +131,6 @@ function onListening() {
   let bind = typeof addr === 'string'
     ? 'pipe ' + addr
     : 'port ' + addr.port;
-  console.log('App is listening on ' + bind);
+  // console.log('App is listening on ' + bind);
   console.log(`App started at localhost:${port}`);
 }
