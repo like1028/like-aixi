@@ -15,6 +15,7 @@ const logger = require('morgan');
 // router
 const index = require('./server/routes/index');
 const eth = require('./server/routes/eth');
+const btc = require('./server/routes/btc');
 
 
 const app = express();
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/eth', eth);
+app.use('/btc', btc);
 
 
 
