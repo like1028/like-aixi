@@ -43,7 +43,7 @@ router.get('/transfer/:address/:amount', async (req, res) => {
 
   web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex'))
     .once('transactionHash', hash => {
-      console.log(`交易发送成功， 交易hash: ${hash}`);
+      console.info(`交易发送成功， 交易hash: ${hash}`);
 
       res.send({
         status: 'success',
@@ -51,7 +51,7 @@ router.get('/transfer/:address/:amount', async (req, res) => {
       });
     })
     .once('error', err => {
-      console.log(`交易发送失败，err: ${err}`);
+      console.error(`交易发送失败，err: ${err}`);
 
       res.send({
         status: 'error',
@@ -98,7 +98,7 @@ router.get('/token/transfer/:address/:amount', async (req, res) => {
 
   web3.eth.sendSignedTransaction('0x' + serializedTx.toString('hex'))
     .once('transactionHash', hash => {
-      console.log(`交易发送成功， 交易hash: ${hash}`);
+      console.info(`交易发送成功， 交易hash: ${hash}`);
 
       res.send({
         status: 'success',
@@ -106,13 +106,28 @@ router.get('/token/transfer/:address/:amount', async (req, res) => {
       });
     })
     .once('error', err => {
-      console.log(`交易发送失败，err: ${err}`);
+      console.error(`交易发送失败，err: ${err}`);
 
       res.send({
         status: 'error',
         message: '交易发送失败'
       });
     });
+});
+
+router.get('/keystore/:password', async (req, res) => {
+  let psd = req.params.password;
+  let privateKey = '';
+
+  let keystore = web3.eth.accounts.encrypt(privateKey, psd);
+
+  console.info(`私钥加密成功，密码: ${psd}, keystore: ${keystore}`);
+  res.send({
+    status: 'success',
+    message: `加密成功, 密码为 ${psd}`,
+    data: keystore
+  });
+
 });
 
 module.exports = router;

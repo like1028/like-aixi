@@ -9,7 +9,7 @@
 const bitcoin = require('bitcoinjs-lib');
 const express = require('express');
 const router = express.Router();
-const http = require('t');
+// const http = require('t');
 
 const rng = require('crypto').randomBytes; // 随机数发生器
 // console.log(bitcoin);
@@ -17,6 +17,7 @@ const rng = require('crypto').randomBytes; // 随机数发生器
 
 router.get('/create', (req, res) => {
   const keyPair = bitcoin.ECPair.makeRandom();
+  const wif = keyPair.toWIF();
   const { address } =bitcoin.payments.p2pkh({ pubkey: keyPair.publicKey });
 
   res.send({
@@ -25,6 +26,7 @@ router.get('/create', (req, res) => {
     data: {
       privateKey: keyPair.privateKey.toString('hex'),
       publicKey: keyPair.publicKey.toString('hex'),
+      wif: wif,
       address: address
     }
   });
