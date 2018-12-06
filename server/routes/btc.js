@@ -54,7 +54,27 @@ router.get('/transfer/:address/:amount', (req, res) => {
   const toAddress = req.params.address;
   const amount = req.params.amount;
 
-  const privateKey = bitcoin.ECPair.fromWIF('cRQN7G5zL47jwWbF3ZJ8Zzzz4rWfuSRJdsWNNT1pSxNtaWwt3Yjb');
+  const like = bitcoin.ECPair.fromWIF('');
+
+  // 获取 inputs
+  // const inputs = ;
+
+  const txb = new bitcoin.TransactionBuilder();
+
+  // 设置网络，添加 input、output
+  txb.setVersion(1);
+  txb.addInput('');
+  txb.addOutput(toAddress, amount);
+
+  // 签名第几个 input，第一个参数为input下标，第二个参数为发送者的私钥
+  txb.sign(0, like);
+
+  // tx 转 hex
+  txb.build().toHex();
+
+  // 广播交易
+
+
 
 });
 
