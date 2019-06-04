@@ -6,7 +6,7 @@
  */
 import _ from 'lodash';
 import './css/style.css';
-import img from './img/27.png';
+import img from './images/27.png';
 import Data from './data/data';
 import printMe from './js/print'
 function component() {
@@ -29,9 +29,9 @@ function component() {
 
 document.body.appendChild(component());
 
-// if (module.hot) {
-//     module.hot.accept('./print.js', function () {
-//         console.log('Accepting the updated printMe module!');
-//         printMe();
-//     });
-// }
+if (module.hot) {
+    module.hot.accept('./js/print.js', function () {
+        console.log('Accepting the updated printMe module!');
+        printMe();
+    });
+}

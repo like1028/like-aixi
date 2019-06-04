@@ -20,9 +20,9 @@ app.use(webpackDevMiddleware(compiler, { //webpackDevMiddleware是个容器（wr
 }));
 
 app.use(webpackHotMiddleware(compiler, {
-    // log: false,
-    // path: "./dist"
-    // heartbeat: 2000
+    // log: true,  //默认值
+    // path: "/__webpack_hmr",  //默认值
+    heartbeat: 20000
 }));
 
 app.listen(8000, function (err) {
