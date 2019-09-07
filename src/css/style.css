@@ -1,18 +1,86 @@
 /**
  *@fileName style.css
  *@author   Like (likeaixi@gmail.com)
- *@date     2018/3/27
- *@disc
+ *@date     2019/9/5
+ *@disc     样式文件
  */
-@font-face {
-    font-family: 'MyFont';
-    src: url("../fonts/fontawesome-webfont.c8ddf1e.woff") format('woff');
-    /*url("./fontawesome-webfont.25a3241.eot") format('eot'),*/
-    /*url("./fontawesome-webfont.c8ddf1e.woff") format('woff'),*/
-    /*url("./fontawesome-webfont.e6cf7c6.woff2") format('woff2');*/
+
+* {
+  box-sizing: border-box;
 }
-.hello{
-    color: red;
-    font-family: 'MyFont';
-    background: url('../images/27.png');
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #333333;
+  background: #fafafa;
+  font:14px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Ubuntu, Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei UI, Microsoft YaHei, Source Han Sans CN, sans-serif;
 }
+
+ul,
+ol,
+li,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+input,
+button {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.lt {
+  float: left;
+}
+
+.rt {
+  float: right;
+}
+
+.clear {
+  clear: both;
+}
+
+a:link,
+a:visited,
+a:active {
+  text-decoration: none;
+  color: #333333;
+}
+
+a:focus {
+  outline: none;
+}
+
+a {
+  color: #333333;
+  text-decoration: none;
+  transition: all .5s ease-in 0s;
+}
+
+a:hover {
+  color: #00C0FF;
+}
+
+#header,
+#main,
+#footer {
+  min-width: 1200px;
+  margin: 0 auto;
+}
+
+#header .nav {
+  width: 1200px;
+  height: 44px;
+}
+
+

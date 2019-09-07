@@ -1,3 +1,11 @@
-node_modules/
+# ide
 .idea
+
+# 打包目录
 dist/
+
+# 模块目录
+node_modules/
+
+# lock.json
+package-lock.json
