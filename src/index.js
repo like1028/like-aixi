@@ -5,9 +5,9 @@
  *@disc
  */
 import _ from 'lodash';
-import "normalize.css"
 import './css/index.css';
-import "jquery";
+
+// import "jquery";
 import printMe from './js/print';
 
 

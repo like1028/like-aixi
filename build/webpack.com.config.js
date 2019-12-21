@@ -2,7 +2,7 @@
  *@fileName webpack.comm.config.js
  *@author   Like (likeaixi@gmail.com)
  *@date     2018/3/29
- *@disc     能用配置
+ *@disc     通用配置
  */
 const path = require('path');
 // const webpack = require('webpack');
@@ -12,6 +12,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin'); //分离 css
 const AutoPreFixer = require('autoprefixer');
 const Glob = require('glob');
 const PurifyCSSPlugin = require('purifycss-webpack');  //消除未使用的 CSS
+console.log(__dirname);
 module.exports = {
     entry: {
         app: ['./src/index.js']
@@ -20,7 +21,7 @@ module.exports = {
     output: {
         // filename: 'bundle.js',
         filename: '[name].[hash].js',
-        path: path.join(__dirname, '../dist'),
+        path: path.resolve(process.cwd(), './dist'),
         publicPath: "/" //会在服务器脚本用到，确保资源能够在http://localhost:8000下正确访问
     },
     module: {
@@ -110,10 +111,12 @@ module.exports = {
         ]
     },
     plugins: [
-        new CleanWebpackPlugin(['dist/*']),//每次打包前清空dist目录
+        new CleanWebpackPlugin(['dist/*'], {
+            root: path.resolve(__dirname, "../")
+        }),//每次打包前清空dist目录
         new HtmlWebpackPlugin({
             // title: 'Production', //设置页面title
-            template: 'index.html'
+            template: './src/index.html'
         }),
         new ExtractTextPlugin("css/index.css"), //这里的 css/index.css 是分离后的路径
         AutoPreFixer,
