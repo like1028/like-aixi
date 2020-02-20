@@ -8,11 +8,11 @@ const path = require('path');
 // const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); //html 打包
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin'); //分离 css
+// const ExtractTextPlugin = require('extract-text-webpack-plugin'); //分离 css
+const MiniCssExtractPlugin = require('mini-css-extract-plugin'); //分离 css
 const AutoPreFixer = require('autoprefixer');
-const Glob = require('glob');
-const PurifyCSSPlugin = require('purifycss-webpack');  //消除未使用的 CSS
-console.log(__dirname);
+
+const devMode = process.env.NODE_ENV !== 'production';
 module.exports = {
     entry: {
         app: ['./src/index.js']
@@ -27,53 +27,24 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        {
-                            loader: "css-loader"
-                        },
-                        {
-                            loader: "postcss-loader"
+                test: /\.(sa|sc|le|c)ss$/i,
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {
+                            // only enable hot in development
+                            hmr: devMode,
+                            // if hmr does not work, this is a forceful method.
+                            reloadAll: true,
                         }
-                    ]
-                })
-            },{
-                test: /\.less$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        {
-                            loader: "css-loader"
-                        },
-                        {
-                            loader: "postcss-loader"
-                        },
-                        {
-                            loader: "less-loader"
-                        }
-                    ]
-                })
-            },{
-                test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [
-                        {
-                            loader: "css-loader"
-                        },
-                        {
-                            loader: "postcss-loader"
-                        },
-                        {
-                            loader: "sass-loader"
-                        }
-                    ]
-                })
+                    },
+                    "css-loader",
+                    "postcss-loader"
+
+                ],
             },
             {
-                test: /\.(png|jpg|gif|jpeg)$/,
+                test: /\.(png|jpg|gif|jpeg)$/i,
                 use: [
                     {
                         loader: "url-loader", // url-loader 封装了file-loader,所以不需要使用 file-loader
@@ -115,13 +86,15 @@ module.exports = {
             root: path.resolve(__dirname, "../")
         }),//每次打包前清空dist目录
         new HtmlWebpackPlugin({
-            // title: 'Production', //设置页面title
+            title: 'likeaixi', //设置页面title
             template: './src/index.html'
         }),
-        new ExtractTextPlugin("css/index.css"), //这里的 css/index.css 是分离后的路径
-        AutoPreFixer,
-        new PurifyCSSPlugin({
-            paths: Glob.sync(path.join(__dirname, 'src/*.html'))
-        })
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: devMode ? '[name].css' : '[name].[hash].css',
+            chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+        }),
+        AutoPreFixer
     ]
 };
