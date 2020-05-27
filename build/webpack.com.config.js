@@ -49,7 +49,7 @@ module.exports = {
                     {
                         loader: "url-loader", // url-loader 封装了file-loader,所以不需要使用 file-loader
                         options: {
-                            outputPath: 'images/',
+                            outputPath: 'img/',
                             limit: 500 //是把小于500B的文件打成Base64的格式，写入JS
                         }
 

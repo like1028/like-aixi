@@ -67,7 +67,52 @@ a:hover {
 #header .nav {
   width: 1200px;
   height: 44px;
+  line-height: 44px;
   margin: 0 auto;
 }
+
+#main {
+  min-height: 500px;
+}
+
+
+.nav-right ul li {
+  float: left;
+  margin-left: 20px;
+}
+
+
+.footer-content {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
